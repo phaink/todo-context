@@ -1,12 +1,19 @@
 import type { ITodo, TodoContextType } from "../@types/todo";
+import React, { useState, useContext  } from "react";
 
-export default function AddTodo() {
-  const formData = {}
-  const disable = formData === undefined ? true : false
+
+
+export default function AddTodo(): React.ReactNode {
+
+  
+
+  const [formData, setFormData] = useState<ITodo | {}>({})
+  // const disable = formData === undefined ? true : false
+  const disable = false
   console.log("disable: ", disable);
 
   return (
-    <form className="flex flex-col w-2/3 ">
+    <form className="flex flex-col w-2/3">
       <fieldset className="p-2 flex flex-col gap-6">
         <div className="flex gap-2 items-center">
           <label
@@ -37,11 +44,11 @@ export default function AddTodo() {
       </fieldset>
       <button
         type="submit"
-        disabled={disable}
         className="flex my-4 mx-2 w-1/3 self-end justify-center rounded-md bg-emerald-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-emerald-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600 capitalize"
       >
         save
       </button>
     </form>
-  );
+  )
 }
+
