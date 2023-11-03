@@ -7,9 +7,16 @@ export default function AddTodo(): React.ReactNode {
 
 
 
-  const [formData, setFormData] = useState<ITodo | {}>({})
-  const disable = formData === undefined ? true : false
+  const [formData, setFormData] = useState<ITodo | null>(null)
+  const disable = formData === null ? true : false
+
+  const btnCommonClasses = "flex my-4 mx-2 w-1/3 self-end justify-center rounded-md px-3 py-1.5 text-sm font-semibold leading-6 shadow-sm capitalize "
+  const btnClasses = btnCommonClasses + (disable ? "bg-gray-700 text-gray-500"
+    : "bg-emerald-600 text-white  hover:bg-emerald-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600")
+
   console.log("disable: ", disable);
+  console.log("btnClasses: ", btnClasses);
+
 
   return (
     <form className="flex flex-col xl:w-1/3 md:w-full">
@@ -43,7 +50,8 @@ export default function AddTodo(): React.ReactNode {
       </fieldset>
       <button
         type="submit"
-        className="flex my-4 mx-2 w-1/3 self-end justify-center rounded-md bg-emerald-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-emerald-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600 capitalize"
+        disabled={disable}
+        className={btnClasses}
       >
         save
       </button>
