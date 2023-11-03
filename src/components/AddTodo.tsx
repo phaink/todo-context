@@ -1,5 +1,5 @@
 import type { ITodo, TodoContextType } from "../@types/todo";
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, FormEvent } from "react";
 
 
 
@@ -17,6 +17,10 @@ export default function AddTodo(): React.ReactNode {
   console.log("disable: ", disable);
   console.log("btnClasses: ", btnClasses);
 
+  const handleChange = (e: FormEvent<HTMLInputElement>, formData: ITodo) => {
+    setFormData({ ...formData, [e.currentTarget.id]: e.currentTarget.value })
+  }
+
 
   return (
     <form className="flex flex-col xl:w-1/3 md:w-full">
@@ -32,6 +36,7 @@ export default function AddTodo(): React.ReactNode {
             className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-100 bg-gray-700 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald-600 sm:text-sm sm:leading-6"
             type="text"
             id="title"
+            onChange={e => handleChange(e, formData)}
           />
         </div>
         <div className="flex gap-2  items-center">
@@ -45,6 +50,7 @@ export default function AddTodo(): React.ReactNode {
             className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-100 bg-gray-700 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald-600 sm:text-sm sm:leading-6"
             type="text"
             id="description"
+
           />
         </div>
       </fieldset>
