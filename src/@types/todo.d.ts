@@ -1,5 +1,5 @@
 export interface ITodo {
-    id: number
+    id: number | null
     title: string
     description: string
     status: boolean
@@ -7,6 +7,6 @@ export interface ITodo {
 
 export type TodoContextType = {
     todos: ITodo[]
-    saveTodo: (todo: ITodo) => void 
+    saveTodo: (todo: ITodo) => void
     updateTodo: (id: number) => void
 }
