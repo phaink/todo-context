@@ -4,7 +4,11 @@ import type { ITodo, TodoContextType } from "../@types/todo.d.ts";
 
 export const TodoContext = createContext<TodoContextType | null>(null);
 
-const TodoProvider: React.FC<React.ReactNode> = ({ children  }) => {
+interface PropsType {
+  children?: React.ReactNode
+}
+
+const TodoProvider = ({ children }: PropsType) => {
   const [todos, setTodos] = useState<ITodo[]>([
     {
       id: 1,
@@ -63,9 +67,9 @@ const TodoProvider: React.FC<React.ReactNode> = ({ children  }) => {
     <TodoContext.Provider
       value={{ todos, saveTodo, updateTodo }}
     >
-        <div className="">
-            { children }
-        </div>
+      <div className="">
+        {children}
+      </div>
     </TodoContext.Provider>
   );
 };
